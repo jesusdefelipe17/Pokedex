@@ -40,10 +40,15 @@
         </div>
 
         <div class="mt-20 text-center border-b pb-12">
-          <h1 class="text-4xl font-medium text-gray-700">{{ pokemon.nombre }}
+          <h1 class="text-5xl font-medium text-gray-700">{{ pokemon.nombre }}
           </h1>
-          <p class="font-light text-gray-600 mt-3">{{ pokemon.tipo }}</p>
 
+          <div class="grid grid-cols-12 gap-4">
+           
+            <button class="h-10 px-5 text-indigo-100 transition-colors duration-150 bg-indigo-700 rounded-full focus:shadow-outline hover:bg-indigo-800 col-start-6 col-end-7 mt-3">{{ pokemon.tipo1 }}</button>
+            <button class="h-10 px-5 text-green-100 transition-colors duration-150 bg-green-700 rounded-full focus:shadow-outline hover:bg-green-800 col-start-7 col-end-8 mt-3">{{ pokemon.tipo2 }}</button>
+             </div>
+        
           <p class="mt-8 text-gray-500">Solution Manager - Creative Tim Officer</p>
           <p class="mt-2 text-gray-500">University of Computer Science</p>
         </div>
@@ -66,49 +71,56 @@
   
 
 <script setup>
-
-import Cards from '../components/Card.vue';
-import { ref, onMounted, watch} from 'vue';
+import { ref, onMounted} from 'vue';
 import { useRoute } from 'vue-router';
 import axios from 'axios';
 
 //Definicion de variables
-const pokemon = {
+const pokemon = ref({
         imagen:'',
         nombre:'',
-        tipo:''
-      }
-
-
+        tipo1:'',
+        tipo2:''
+      })
 
 const route = useRoute(); // Usa useRoute para acceder a la ruta actual
 
 
-onMounted(async () => {
+const cargarPokemon = async () => {
   try {
-    // Hacer 10 solicitudes HTTP para los primeros 10 Pokémon
-    
-      const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${route.params.id}`);
-      const data = response.data;
-      console.log(data);
+    const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${route.params.id}`);
+    const data = response.data;
+    console.log(data);
 
-      // Agregar la imagen al array imagenes
-    pokemon.imagen = data.sprites.other.dream_world.front_default;
-    pokemon.nombre = data.name;
-    pokemon.tipo = data.types[0].type.name;
+    const nuevoPokemon = {
+      imagen: data.sprites.other.dream_world.front_default,
+      nombre: data.name,
+      tipo1: data.types[0].type.name,
+      tipo2: data.types[1].type.name
+    };
 
-
-   
+    // Actualiza el objeto pokemon con el nuevoPokemon
+    pokemon.value = nuevoPokemon;
   } catch (error) {
     console.error(`Error: ${error}`);
   }
+};
 
-});
+
+
+// Llama a cargarPokemon cuando se monta el componente
+onMounted(cargarPokemon);
 
 
 
 </script>
-<style></style>
+<style scoped>
+
+:root{
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+</style>
 <script>
 export default {};
 </script>
