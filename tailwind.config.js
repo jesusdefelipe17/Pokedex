@@ -6,7 +6,11 @@ export default {
     "./node_modules/flowbite/**/*.js",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontSize: {
+        'xxs': '0.6rem', // Tamaño de letra personalizado
+      },
+    },
   },
   plugins: [
     require('flowbite/plugin')({

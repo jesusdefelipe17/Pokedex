@@ -54,17 +54,17 @@
                 <div class="w-full">
                   <ul class="flex mb-0 list-none flex-wrap pt-3 pb-4 flex-row">
                     <li class="-mb-px mr-2 last:mr-0 flex-auto text-center">
-                      <a class="text-xs font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal" v-on:click="toggleTabs(1)" v-bind:class="{'text-pink-600 bg-white': openTab !== 1, 'text-white bg-pink-600': openTab === 1}">
-                        Profile
+                      <a class="text-xxs md:text-sm font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal" v-on:click="toggleTabs(1)" v-bind:class="{'text-pink-600 bg-white': openTab !== 1, 'text-white bg-pink-600': openTab === 1}">
+                        Estadisticas Basicas
                       </a>
                     </li>
                     <li class="-mb-px mr-2 last:mr-0 flex-auto text-center">
-                      <a class="text-xs font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal" v-on:click="toggleTabs(2)" v-bind:class="{'text-pink-600 bg-white': openTab !== 2, 'text-white bg-pink-600': openTab === 2}">
-                        Settings
+                      <a class="text-xxs md:text-sm font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal" v-on:click="toggleTabs(2)" v-bind:class="{'text-pink-600 bg-white': openTab !== 2, 'text-white bg-pink-600': openTab === 2}">
+                        Habilidades
                       </a>
                     </li>
                     <li class="-mb-px mr-2 flex-auto text-center custom-margin">
-                      <a class="text-xs font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal" v-on:click="toggleTabs(3)" v-bind:class="{'text-pink-600 bg-white': openTab !== 3, 'text-white bg-pink-600': openTab === 3}">
+                      <a class="text-xxs md:text-sm font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal" v-on:click="toggleTabs(3)" v-bind:class="{'text-pink-600 bg-white': openTab !== 3, 'text-white bg-pink-600': openTab === 3}">
                         Options
                       </a>
                     </li>
@@ -74,19 +74,55 @@
                       <div class="tab-content tab-space">
                         <div v-bind:class="{'hidden': openTab !== 1, 'block': openTab === 1}">
                           
+                          
                           <div id="bar-chart"></div>
                             
                         </div>
-                        <div v-bind:class="{'hidden': openTab !== 2, 'block': openTab === 2}">
-                          <p>
-                            Completely synergize resource taxing relationships via
-                            premier niche markets. Professionally cultivate one-to-one
-                            customer service with robust ideas.
-                            <br />
-                            <br />
-                            Dynamically innovate resource-leveling customer service for
-                            state of the art customer service.
-                          </p>
+                        <div class="items-center" v-bind:class="{'hidden': openTab !== 2, 'block': openTab === 2}">
+                          <div class="flex flex-col sm:flex-row">
+                            <div v-for="(ability, index) in pokemon.abilities" :key="index" class="flex justify-center bg-gray-50 p-2">
+                              <div class="group relative cursor-pointer overflow-hidden bg-white px-6 pt-10 pb-8 shadow-xl ring-1 ring-gray-900/5 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl sm:mx-auto sm:max-w-sm sm:rounded-lg sm:px-10 w-80">
+                                <span class="absolute top-10 z-0 h-20 w-20 rounded-full bg-blue-300 transition-all duration-300 group-hover:scale-[10]"></span>
+                                <div class="relative z-10 mx-auto max-w-md sm:flex-col justify-center">
+                                  <div class="flex items-center">
+                                    <span class="grid h-20 w-20 place-items-center rounded-full bg-blue-300 transition-all duration-300 group-hover:bg-blue-300">
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 100 100">
+                                        <path d="M 30 50
+                                          a 1 1 1 0 1 40 0
+                                          h-12.5
+                                          a 1 1 1 0 0 -15 0
+                                          z"
+                                          fill="#f00" stroke="#222"
+                                        ></path>
+                                        <circle
+                                          cx="50"
+                                          cy="50"
+                                          r="5"
+                                          fill="#222" stroke="#222"
+                                        ></circle>
+                                        <path d="M 30 50
+                                          a 1 1 1 0 0 40 0
+                                          h-12.5
+                                          a 1 1 1 0 1 -15 0
+                                          z"
+                                          fill="#fff" stroke="#222"
+                                        ></path>
+                                      </svg>
+                                    </span>
+                                    <p class="ml-2 font-bold ml-6 md:ml-12 ">{{ ability.nombre }}</p>
+                                  </div>
+                                  <div class="space-y-6 pt-5 text-base leading-7 text-gray-600 transition-all duration-300 group-hover:text-black/90">
+                                    <p>{{ ability.descripcion }}</p>
+                                  </div>
+                                  <div class="pt-5 text-base font-semibold leading-7">
+                                    <p>
+                                      <a href="#" class="text-sky-500 transition-all duration-300 group-hover:text-black">Read the docs &rarr;</a>
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
                         </div>
                         <div v-bind:class="{'hidden': openTab !== 3, 'block': openTab === 3}">
                           <p>
@@ -137,6 +173,20 @@ import axios from 'axios';
 import ApexCharts from 'apexcharts';
 
 //Definicion de variables
+
+let estadisticas = {
+      nombre:'',
+      valor:''
+}
+let habilidad = {
+      nombre:'',
+      descripcion:''
+}
+
+const stats = [];
+const abilities = [];
+
+
 const pokemon = ref({
         imagen:'',
         nombre:'',
@@ -147,7 +197,9 @@ const pokemon = ref({
         altura:'',
         experiencia:'',
         numeroPokedex:'',
-        apariencia:''
+        apariencia:'',
+        stats:[estadisticas],
+        habilidades:[habilidad]
       })
 
 
@@ -176,7 +228,48 @@ const cargarPokemon = async () => {
     }
     
 
-   console.log(data2)
+    for (let index = 0; index < data.stats.length; index++) {
+      let estadisticasNuevas= {
+        nombre:'',
+        valor:''
+      }
+      estadisticasNuevas.valor = data.stats[index].base_stat;
+      estadisticasNuevas.nombre = data.stats[index].stat.name;
+      estadisticas = estadisticasNuevas;
+      stats.push(estadisticas);
+    }
+
+
+    for (let index = 0; index < data.abilities.length; index++) {
+
+      const url = data.abilities[index].ability.url
+
+      const responseHabilidad = await axios.get(url);
+      const dataHabilidad = responseHabilidad.data;
+
+      let descrip = '';
+
+      console.log(dataHabilidad.flavor_text_entries)
+
+      for (let i = 0; i < dataHabilidad.flavor_text_entries.length; i++) {
+        if (dataHabilidad.flavor_text_entries[i].language.name === 'es') {
+          descrip = dataHabilidad.flavor_text_entries[i].flavor_text;
+          break; // Detenemos el bucle una vez que encontramos el texto en español
+        }
+      }
+
+      if (!descrip) {
+        descrip = ''; // Otra acción por defecto si no se encuentra la descripción en español
+      }
+
+      let habilidadNueva = {
+        nombre:dataHabilidad.names[5].name,
+        descripcion:descrip
+      } 
+      habilidad = habilidadNueva;
+      abilities.push(habilidad);
+    }
+
 
     const nuevoPokemon = {
       imagen: data.sprites.other.dream_world.front_default,
@@ -189,8 +282,13 @@ const cargarPokemon = async () => {
       experiencia:data.base_experience,
       numeroPokedex:data.id,
       genero:data2.gender_rate == 1 ? 'Macho' : 'Hembra',
-      apariencia:data3.names[5].name
+      apariencia:data3.names[5].name,
+      stats:stats,
+      abilities: abilities
     };
+
+    //Datos del Pokemon
+    console.log(nuevoPokemon);
 
     // Actualiza el objeto pokemon con el nuevoPokemon
     pokemon.value = nuevoPokemon;
@@ -199,19 +297,21 @@ const cargarPokemon = async () => {
   }
 };
 
-//Charts
+
+
+// Llama a cargarPokemon cuando se monta el componente
+
+
+onMounted(() => {
+  cargarPokemon().then(()=>{
+    //Charts
 
 var options = {
       series: [
         {
-          name: "Income",
+          name: "Estadisticas Basicas",
           color: "#31C48D",
-          data: ["1420", "1620", "1820", "1420", "1650", "2120"],
-        },
-        {
-          name: "Expense",
-          data: ["788", "810", "866", "788", "1100", "1200"],
-          color: "#F05252",
+          data: [stats[0].valor, stats[1].valor, stats[2].valor, stats[3].valor, stats[4].valor, stats[5].valor],
         }
       ],
       chart: {
@@ -250,7 +350,7 @@ var options = {
         shared: true,
         intersect: false,
         formatter: function (value) {
-          return "$" + value
+          return value
         }
       },
       xaxis: {
@@ -261,10 +361,10 @@ var options = {
             cssClass: 'text-xs font-normal fill-gray-500 dark:fill-gray-400'
           },
           formatter: function(value) {
-            return "$" + value
+            return value
           }
         },
-        categories: ["Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+        categories: ["Hp", "Ata", "Def", "Ata Esp", "Def Esp", "Vel"],
         axisTicks: {
           show: false,
         },
@@ -294,15 +394,12 @@ var options = {
         opacity: 1,
       }
     }
-
-// Llama a cargarPokemon cuando se monta el componente
-onMounted(cargarPokemon);
-
-onMounted(() => {
-  if (document.getElementById("bar-chart") && typeof ApexCharts !== 'undefined') {
+    if (document.getElementById("bar-chart") && typeof ApexCharts !== 'undefined') {
     const chart = new ApexCharts(document.getElementById("bar-chart"), options);
     chart.render();
   }
+  });
+  
 });
 
    

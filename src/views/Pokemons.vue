@@ -26,7 +26,7 @@ const pokemons = ref([]);
 onMounted(async () => {
   try {
     // Hacer 10 solicitudes HTTP para los primeros 10 Pokémon
-    for (let i = 1; i <= 100; i++) {
+    for (let i = 1; i <= 151; i++) {
       const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${i}`);
       const data = response.data;
   
