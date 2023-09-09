@@ -150,8 +150,8 @@
 
             <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
               <div class="items-center md:col-start-2 md:col-end-4 mt-5">
-              <button class="h-10 px-5 md:mr-3 text-indigo-100 transition-colors duration-150 bg-indigo-700 rounded-full focus:shadow-outline hover:bg-indigo-800 mt-3 custom-margin-r">{{ pokemon.tipo1 }}</button>
-              <button class="h-10 px-5 text-green-100 transition-colors duration-150 bg-green-700 rounded-full focus:shadow-outline hover:bg-green-800 mt-3 ">{{ pokemon.tipo2 }}</button>
+              <button v-show="pokemon.tipo1 != ''" class="h-10 px-5 md:mr-3 text-indigo-100 transition-colors duration-150 bg-indigo-700 rounded-full focus:shadow-outline hover:bg-indigo-800 mt-3 custom-margin-r">{{ pokemon.tipo1 }}</button>
+              <button v-show="pokemon.tipo2 != ''" class="h-10 px-5 text-green-100 transition-colors duration-150 bg-green-700 rounded-full focus:shadow-outline hover:bg-green-800 mt-3 ">{{ pokemon.tipo2 }}</button>
             </div>
           </div>
             <p class="mt-8 text-gray-500">{{ pokemon.descripcionPokemon }}</p>
@@ -249,7 +249,6 @@ const cargarPokemon = async () => {
 
       let descrip = '';
 
-      console.log(dataHabilidad.flavor_text_entries)
 
       for (let i = 0; i < dataHabilidad.flavor_text_entries.length; i++) {
         if (dataHabilidad.flavor_text_entries[i].language.name === 'es') {
@@ -270,12 +269,42 @@ const cargarPokemon = async () => {
       abilities.push(habilidad);
     }
 
+    console.log(data)
+
+    //Sacamos el tipo 1 de pokemon 
+    let tipo1 = '';
+    let url = data.types[0].type.url
+    let responseTipos = await axios.get(url);
+    let dataTipos = responseTipos.data;
+    for (let i = 0; i < dataTipos.names.length; i++) {
+      if (dataTipos.names[i].language.name === 'es') {
+        tipo1 = dataTipos.names[i].name;
+        break; // Detenemos el bucle una vez que encontramos el texto en español
+      }
+    }
+   
+
+    //Sacamos el tipo 2 de pokemon 
+    let tipo2 = '';
+    if(data.types[1]!=undefined){
+      url = data.types[1].type.url
+      responseTipos = await axios.get(url);
+      dataTipos = responseTipos.data;
+      for (let i = 0; i < dataTipos.names.length; i++) {
+        if (dataTipos.names[i].language.name === 'es') {
+          tipo2 = dataTipos.names[i].name;
+          break; // Detenemos el bucle una vez que encontramos el texto en español
+        }
+      }
+    }
+   
+
 
     const nuevoPokemon = {
       imagen: data.sprites.other.dream_world.front_default,
       nombre: data.name.toUpperCase(),
-      tipo1: data.types[0].type.name.toUpperCase(),
-      tipo2: data.types.length > 1 ? data.types[1].type.name.toUpperCase() : '',
+      tipo1: tipo1.toUpperCase(),
+      tipo2: tipo2.toUpperCase(),
       descripcionPokemon:descrip,
       peso: data.weight / 10, // Convierte de decímetros a metros
       altura: data.height / 10, // Convierte de centímetros a metros
@@ -288,7 +317,6 @@ const cargarPokemon = async () => {
     };
 
     //Datos del Pokemon
-    console.log(nuevoPokemon);
 
     // Actualiza el objeto pokemon con el nuevoPokemon
     pokemon.value = nuevoPokemon;
