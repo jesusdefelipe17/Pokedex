@@ -151,21 +151,88 @@
           </div>
 
           <!-- Contenido del segundo elemento (nombre, tipos y descripción) -->
-          <div class="md:mt-12 text-center pb-12">
-            <h1 class="text-2xl font-medium text-gray-700">TIPO</h1>
+          <div class="md:mt-20 text-center pb-12">
+            <h1 class="text-3xl font-medium text-gray-700">TIPO</h1>
 
             <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
               <div class="items-center md:col-start-2 md:col-end-4 mt-5">
                 <button v-show="pokemon.tipo1 != ''" :style="{
-                        backgroundImage: pokemon.tipo1 === 'VOLADOR' ? 'linear-gradient(to bottom, #3DC7EF 50%, #BDB9B8 50%)' : 'none',
-                        backgroundColor: pokemon.tipo1 === 'FUEGO' ? '#FD7D24' : 'transparent',
-                      }" class="h-10 px-5 md:mr-3 text-indigo-100 transition-colors duration-150 focus:shadow-outline rounded-full hover:bg-indigo-800 mt-3 custom-margin-r">
+                        backgroundImage: pokemon.tipo1 === 'VOLADOR' ? 'linear-gradient(to bottom, #3DC7EF 50%, #BDB9B8 50%)' :
+                        pokemon.tipo1 === 'FUEGO' ? 'none' :
+                        pokemon.tipo1 === 'BICHO' ? 'none' :
+                        pokemon.tipo1 === 'HADA' ? 'none':
+                        pokemon.tipo1 === 'FANTASMA' ? 'none':
+                        pokemon.tipo1 === 'NORMAL' ? 'none':
+                        pokemon.tipo1 === 'PSÍQUICO' ? 'none':
+                        pokemon.tipo1 === 'ACERO' ? 'none':
+                        pokemon.tipo1 === 'SINIESTRO' ? 'none':
+                        pokemon.tipo1 === 'ELÉCTRICO' ? 'none':
+                        pokemon.tipo1 === 'LUCHA' ? 'none':
+                        pokemon.tipo1 === 'PLANTA' ? 'none':
+                        pokemon.tipo1 === 'HIELO' ? 'none':
+                        pokemon.tipo1 === 'VENENO' ? 'none':
+                        pokemon.tipo1 === 'ROCA' ? 'none':
+                        pokemon.tipo1 === 'AGUA' ? 'none':
+                        pokemon.tipo1 === 'DRAGÓN' ? 'linear-gradient(to bottom, #53A4CF 50%, #F16E57 50%)' :
+                        pokemon.tipo1 === 'TIERRA' ? 'linear-gradient(to bottom, #F7DE3F 50%, #AB9842 50%)' :
+                                        'none',
+                        backgroundColor: pokemon.tipo1 === 'FUEGO' ? '#FD7D24' :
+                        pokemon.tipo1 === 'BICHO' ? '#729F3F' :
+                        pokemon.tipo1 === 'HADA' ? '#FDB9E9':
+                        pokemon.tipo1 === 'FANTASMA' ? '#7B62A3':
+                        pokemon.tipo1 === 'NORMAL' ? '#A4ACAF':
+                        pokemon.tipo1 === 'PSÍQUICO' ? '#F366B9':
+                        pokemon.tipo1 === 'ACERO' ? '#A4ACAF':
+                        pokemon.tipo1 === 'SINIESTRO' ? '#707070':
+                        pokemon.tipo1 === 'ELÉCTRICO' ? '#EED535':
+                        pokemon.tipo1 === 'LUCHA' ? '#D56723':
+                        pokemon.tipo1 === 'PLANTA' ? '#9BCC50':
+                        pokemon.tipo1 === 'HIELO' ? '#51C4E7':
+                        pokemon.tipo1 === 'VENENO' ? '#B97FC9':
+                        pokemon.tipo1 === 'ROCA' ? '#A38C21':
+                        pokemon.tipo1 === 'AGUA' ? '#4592C4':
+                                        'transparent',
+                        
+                      }" class="h-10 px-5 md:mr-3 text-black font-bold transition-colors duration-150 focus:shadow-outline rounded-full hover:bg-indigo-800 mt-3 custom-margin-r">
                         {{ pokemon.tipo1 }}
                       </button>
                       <button v-show="pokemon.tipo2 != ''" :style="{
-                        backgroundImage: pokemon.tipo2 === 'VOLADOR' ? 'linear-gradient(to bottom, #3DC7EF 50%, #BDB9B8 50%)' : 'none',
-                        backgroundColor: pokemon.tipo2 === 'FUEGO' ? '#FD7D24' : 'transparent',
-                      }" class="h-10 px-5 md:mr-3 text-indigo-100 transition-colors duration-150 focus:shadow-outline rounded-full hover:bg-indigo-800 mt-3 custom-margin-r">
+                        backgroundImage: pokemon.tipo2 === 'VOLADOR' ? 'linear-gradient(to bottom, #3DC7EF 50%, #BDB9B8 50%)' :
+                        pokemon.tipo2 === 'FUEGO' ? 'none' :
+                        pokemon.tipo2 === 'BICHO' ? 'none' :
+                        pokemon.tipo2 === 'HADA' ? 'none':
+                        pokemon.tipo2 === 'FANTASMA' ? 'none':
+                        pokemon.tipo2 === 'NORMAL' ? 'none':
+                        pokemon.tipo2 === 'PSÍQUICO' ? 'none':
+                        pokemon.tipo2 === 'ACERO' ? 'none':
+                        pokemon.tipo2 === 'SINIESTRO' ? 'none':
+                        pokemon.tipo2 === 'ELÉCTRICO' ? 'none':
+                        pokemon.tipo2 === 'LUCHA' ? 'none':
+                        pokemon.tipo2 === 'PLANTA' ? 'none':
+                        pokemon.tipo2 === 'HIELO' ? 'none':
+                        pokemon.tipo2 === 'VENENO' ? 'none':
+                        pokemon.tipo2 === 'ROCA' ? 'none':
+                        pokemon.tipo2 === 'AGUA' ? 'none':
+                        pokemon.tipo2 === 'DRAGÓN' ? 'linear-gradient(to bottom, #53A4CF 50%, #F16E57 50%)' :
+                        pokemon.tipo2 === 'TIERRA' ? 'linear-gradient(to bottom, #F7DE3F 50%, #AB9842 50%)' :
+                                        'none',
+                        backgroundColor: pokemon.tipo2 === 'FUEGO' ? '#FD7D24' :
+                        pokemon.tipo2 === 'BICHO' ? '#729F3F' :
+                        pokemon.tipo2 === 'HADA' ? '#FDB9E9':
+                        pokemon.tipo2 === 'FANTASMA' ? '#7B62A3':
+                        pokemon.tipo2 === 'NORMAL' ? '#A4ACAF':
+                        pokemon.tipo2 === 'PSÍQUICO' ? '#F366B9':
+                        pokemon.tipo2 === 'ACERO' ? '#A4ACAF':
+                        pokemon.tipo2 === 'SINIESTRO' ? '#707070':
+                        pokemon.tipo2 === 'ELÉCTRICO' ? '#EED535':
+                        pokemon.tipo2 === 'LUCHA' ? '#D56723':
+                        pokemon.tipo2 === 'PLANTA' ? '#9BCC50':
+                        pokemon.tipo2 === 'HIELO' ? '#51C4E7':
+                        pokemon.tipo2 === 'VENENO' ? '#B97FC9':
+                        pokemon.tipo2 === 'ROCA' ? '#A38C21':
+                        pokemon.tipo2 === 'AGUA' ? '#4592C4':
+                                        'transparent',
+                      }" class="h-10 px-5 md:mr-3 text-black font-bold transition-colors duration-150 focus:shadow-outline rounded-full hover:bg-indigo-800 mt-3 custom-margin-r">
                         {{ pokemon.tipo2 }}
                       </button>
               </div>
@@ -187,17 +254,81 @@
                 <h3 class="z-10 mt-3 text-3xl font-bold text-white">{{ evolution.nombre }}</h3>
                 <div class="z-10 gap-y-1 overflow-hidden text-sm leading-6 text-gray-300">
                   <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-                    <div class="items-center md:col-start-1 md:col-end-4 mt-5">
+                    <div class="items-center md:col-start-1 md:col-end-5 mt-5">
                       <button v-show="evolution.tipo1 != ''" :style="{
-                        backgroundImage: evolution.tipo1 === 'Volador' ? 'linear-gradient(to bottom, #3DC7EF 50%, #BDB9B8 50%)' : 'none',
-                        backgroundColor: evolution.tipo1 === 'Fuego' ? '#FD7D24' : 'transparent',
-                      }" class="h-10 px-5 md:mr-3 text-indigo-100 transition-colors duration-150 focus:shadow-outline rounded-full hover:bg-indigo-800 mt-3 custom-margin-r">
+                        backgroundImage: evolution.tipo1 === 'Volador' ? 'linear-gradient(to bottom, #3DC7EF 50%, #BDB9B8 50%)' :
+                                        evolution.tipo1 === 'Fuego' ? 'none' :
+                                        evolution.tipo1 === 'Bicho' ? 'none' :
+                                        evolution.tipo1 === 'Hada' ? 'none':
+                                        evolution.tipo1 === 'Fantasma' ? 'none':
+                                        evolution.tipo1 === 'Psíquico' ? 'none':
+                                        evolution.tipo1 === 'Acero' ? 'none':
+                                        evolution.tipo1 === 'Siniestro' ? 'none':
+                                        evolution.tipo1 === 'Eléctrico' ? 'none':
+                                        evolution.tipo1 === 'Lucha' ? 'none':
+                                        evolution.tipo1 === 'Planta' ? 'none':
+                                        evolution.tipo1 === 'Hielo' ? 'none':
+                                        evolution.tipo1 === 'Veneno' ? 'none':
+                                        evolution.tipo1 === 'Roca' ? 'none':
+                                        evolution.tipo1 === 'Agua' ? 'none':
+                                        evolution.tipo1 === 'Dragón' ? 'linear-gradient(to bottom, #53A4CF 50%, #F16E57 50%)' :
+                                        evolution.tipo1 === 'Tierra' ? 'linear-gradient(to bottom, #F7DE3F 50%, #AB9842 50%)' :
+                                        'none',
+                        backgroundColor: evolution.tipo1 === 'Fuego' ? '#FD7D24' :
+                                        evolution.tipo1 === 'Bicho' ? '#729F3F' :
+                                        evolution.tipo1 === 'Hada' ? '#FDB9E9':
+                                        evolution.tipo1 === 'Psíquico' ? '#F366B9':
+                                        evolution.tipo1 === 'Fantasma' ? '#7B62A3':
+                                        evolution.tipo1 === 'Acero' ? '#A4ACAF':
+                                        evolution.tipo1 === 'Siniestro' ? '#707070':
+                                        evolution.tipo1 === 'Eléctrico' ? '#EED535':
+                                        evolution.tipo1 === 'Lucha' ? '#D56723':
+                                        evolution.tipo1 === 'Planta' ? '#9BCC50':
+                                        evolution.tipo1 === 'Hielo' ? '#51C4E7':
+                                        evolution.tipo1 === 'Veneno' ? '#B97FC9':
+                                        evolution.tipo1 === 'Roca' ? '#A38C21':
+                                        evolution.tipo1 === 'Agua' ? '#4592C4':
+                                        'transparent',
+                        
+                      }" class="h-10 px-5 md:mr-3 text-black font-bold transition-colors duration-150 focus:shadow-outline rounded-full hover:bg-indigo-800 mt-3 custom-margin-r">
                         {{ evolution.tipo1 }}
                       </button>
                       <button v-show="evolution.tipo2 != ''" :style="{
-                        backgroundImage: evolution.tipo2 === 'Volador' ? 'linear-gradient(to bottom, #3DC7EF 50%, #BDB9B8 50%)' : 'none',
-                        backgroundColor: evolution.tipo2 === 'Fuego' ? '#FD7D24' : 'transparent',
-                      }" class="h-10 px-5 text-green-100 transition-colors duration-150 focus:shadow-outline rounded-full hover:bg-green-800 mt-3">
+                        backgroundImage: evolution.tipo2 === 'Volador' ? 'linear-gradient(to bottom, #3DC7EF 50%, #BDB9B8 50%)' :
+                                        evolution.tipo2 === 'Fuego' ? 'none' :
+                                        evolution.tipo2 === 'Bicho' ? 'none' :
+                                        evolution.tipo2 === 'Hada' ? 'none':
+                                        evolution.tipo2 === 'Fantasma' ? 'none':
+                                        evolution.tipo2 === 'Psíquico' ? 'none':
+                                        evolution.tipo2 === 'Acero' ? 'none':
+                                        evolution.tipo2 === 'Siniestro' ? 'none':
+                                        evolution.tipo2 === 'Eléctrico' ? 'none':
+                                        evolution.tipo2 === 'Lucha' ? 'none':
+                                        evolution.tipo2 === 'Planta' ? 'none':
+                                        evolution.tipo2 === 'Hielo' ? 'none':
+                                        evolution.tipo2 === 'Veneno' ? 'none':
+                                        evolution.tipo2 === 'Roca' ? 'none':
+                                        evolution.tipo2 === 'Agua' ? 'none':
+                                        evolution.tipo2 === 'Dragón' ? 'linear-gradient(to bottom, #53A4CF 50%, #F16E57 50%)' :
+                                        evolution.tipo2 === 'Tierra' ? 'linear-gradient(to bottom, #F7DE3F 50%, #AB9842 50%)' :
+                                        'none',
+                                        
+                        backgroundColor: evolution.tipo2 === 'Fuego' ? '#FD7D24' :
+                                        evolution.tipo2 === 'Bicho' ? '#729F3F' :
+                                        evolution.tipo2 === 'Hada' ? '#FDB9E9':
+                                        evolution.tipo2 === 'Fantasma' ? '#7B62A3':
+                                        evolution.tipo2 === 'Psíquico' ? '#F366B9':
+                                        evolution.tipo2 === 'Acero' ? '#A4ACAF':
+                                        evolution.tipo2 === 'Siniestro' ? '#707070':
+                                        evolution.tipo2 === 'Eléctrico' ? '#EED535':
+                                        evolution.tipo2 === 'Lucha' ? '#D56723':
+                                        evolution.tipo2 === 'Planta' ? '#9BCC50':
+                                        evolution.tipo2 === 'Hielo' ? '#51C4E7':
+                                        evolution.tipo2 === 'Veneno' ? '#B97FC9':
+                                        evolution.tipo2 === 'Roca' ? '#A38C21':
+                                        evolution.tipo2 === 'Agua' ? '#4592C4':
+                                        'transparent',
+                      }" class="h-10 px-5 text-black font-bold transition-colors duration-150 focus:shadow-outline rounded-full hover:bg-green-800 mt-3">
                         {{ evolution.tipo2 }}
                       </button>
 
@@ -412,7 +543,7 @@ const cargarPokemon = async () => {
 
           return {
             nombre: speciesName.toUpperCase(),
-            img: pokemonData.sprites.other.dream_world.front_default,
+            img: pokemonData.sprites.other.dream_world.front_default != null ? pokemonData.sprites.other.dream_world.front_default : pokemonData.sprites.other['official-artwork'].front_default ,
             tipo1,
             tipo2,
           };
@@ -444,20 +575,20 @@ const cargarPokemon = async () => {
 
 
     const nuevoPokemon = {
-      imagen: data.sprites.other.dream_world.front_default,
+      imagen: data.sprites.other.dream_world.front_default != null ? data.sprites.other.dream_world.front_default : data.sprites.other['official-artwork'].front_default,
       nombre: data.name.toUpperCase(),
       tipo1: tipo1.toUpperCase(),
       tipo2: tipo2.toUpperCase(),
       descripcionPokemon: descrip,
       peso: data.weight / 10, // Convierte de decímetros a metros
       altura: data.height / 10, // Convierte de centímetros a metros
-      experiencia: data.base_experience,
+      experiencia: data.base_experience != null ? data.base_experience : '?',
       numeroPokedex: data.id,
       genero: data2.gender_rate == 1 ? 'Macho' : 'Hembra',
       apariencia: data3.names[5].name,
       stats: stats,
       abilities: abilities,
-      base: data.sprites.other.dream_world.front_default,
+      base: data.sprites.other.dream_world.front_default != null ? data.sprites.other.dream_world.front_default : data.sprites.other['official-artwork'].front_default,
       evol: evolutions
     };
 
